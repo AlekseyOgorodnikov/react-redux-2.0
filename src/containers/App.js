@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 
 import './App.css';
 
+import { Page } from '../components/Page/Page';
+import { User } from '../components/User/User';
+
 function App(props) {
   const { user, page } = props;
 
@@ -14,10 +17,8 @@ function App(props) {
         <p className="App-intro">
           Maximum likes photo, in my profile vkontake!
         </p>
-        <h2>My name is {user.name}!</h2>
-        <p>
-          You page {page.photos.length} photo {page.year}
-        </p>
+        <User name={user.name} />
+        <Page photos={page.photos} year={page.year} />
       </header>
     </div>
   );
