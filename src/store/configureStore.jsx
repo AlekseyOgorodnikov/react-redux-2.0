@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
 
-import { rootReducer, initialState } from '../reducers';
+import { rootReducer } from '../reducers';
 
-export const store = createStore(rootReducer, initialState); // second function reducer
+export const store = createStore(rootReducer); // second function reducer

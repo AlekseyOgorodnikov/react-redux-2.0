@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import './App.css';
 
 function App(props) {
-  const { name, surname, age } = props.user;
+  const { user, page } = props;
 
   return (
     <div className="App">
@@ -14,15 +14,15 @@ function App(props) {
         <p className="App-intro">
           Maximum likes photo, in my profile vkontake!
         </p>
-        <h2>
-          My name is {name}, {surname}
-        </h2>
-        <p>Age {age}</p>
+        <h2>My name is {user.name}!</h2>
+        <p>
+          You page {page.photos.length} photo {page.year}
+        </p>
       </header>
     </div>
   );
 }
 
-const mapStateToProps = (store) => ({ user: store.user });
+const mapStateToProps = (store) => ({ user: store.user, page: store.page });
 
 export default connect(mapStateToProps)(App);
