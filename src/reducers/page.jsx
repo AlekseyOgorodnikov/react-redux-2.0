@@ -3,6 +3,12 @@ const initialState = {
   photos: [],
 };
 
-export function pageReducee(state = initialState) {
-  return state;
+export function pageReducee(state = initialState, action) {
+  switch (action.type) {
+    case 'SET_YEAR':
+      return { ...state, year: action.payload };
+
+    default:
+      return state;
+  }
 }

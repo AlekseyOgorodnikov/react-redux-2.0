@@ -6,9 +6,10 @@ import './App.css';
 
 import { Page } from '../components/Page/Page';
 import { User } from '../components/User/User';
+import { setYear } from '../actions/PageActions';
 
 function App(props) {
-  const { user, page } = props;
+  const { user, page, setYearAction } = props;
 
   return (
     <div className="App">
@@ -18,12 +19,22 @@ function App(props) {
           Maximum likes photo, in my profile vkontake!
         </p>
         <User name={user.name} />
-        <Page photos={page.photos} year={page.year} />
+        <Page photos={page.photos} year={page.year} setYear={setYearAction} />
       </header>
     </div>
   );
 }
 
-const mapStateToProps = (store) => ({ user: store.user, page: store.page });
+const mapStateToProps = (store) => {
+  // console.log(store);
+  return {
+    user: store.user,
+    page: store.page,
+  };
+};
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  setYearAction: (year) => dispatch(setYear(year)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
