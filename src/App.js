@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
+
+import { connect } from 'react-redux';
+
 import './App.css';
 
-function App() {
+function App(props) {
+  const { name, surname, age } = props.user;
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+        <h1 className="App-title">Top photo</h1>
+        <p className="App-intro">
+          Maximum likes photo, in my profile vkontake!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h2>
+          My name is {name}, {surname}
+        </h2>
+        <p>Age {age}</p>
       </header>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (store) => ({ user: store.user });
+
+export default connect(mapStateToProps)(App);
