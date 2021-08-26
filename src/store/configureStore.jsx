@@ -1,5 +1,7 @@
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 
 import { rootReducer } from '../reducers';
 
-export const store = createStore(rootReducer); // second function reducer
+import logger from 'redux-logger';
+
+export const store = createStore(rootReducer, applyMiddleware(logger)); // second function reducer
