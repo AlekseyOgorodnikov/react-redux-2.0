@@ -6,10 +6,11 @@ import './App.css';
 
 import { Page } from '../components/Page/Page';
 import { User } from '../components/User/User';
-import { setYear } from '../actions/PageActions';
+import { getPhoto } from '../actions/PageActions';
+import { handleLogin } from '../actions/UserAction';
 
 function App(props) {
-  const { user, page, setYearAction } = props;
+  const { user, page, getPhotoAction, handleLoginAction } = props;
 
   return (
     <div className="App">
@@ -18,15 +19,26 @@ function App(props) {
         <p className="App-intro">
           Maximum likes photo, in my profile vkontake!
         </p>
-        <User name={user.name} />
-        <Page photos={page.photos} year={page.year} setYear={setYearAction} />
+
+        <User
+          name={user.name}
+          isFetching={user.isFetching}
+          error={user.error}
+          handleLogin={handleLoginAction}
+        />
+
+        <Page
+          photos={page.photos}
+          year={page.year}
+          getPhoto={getPhotoAction}
+          isFetching={page.isFetching}
+        />
       </header>
     </div>
   );
 }
 
 const mapStateToProps = (store) => {
-  // console.log(store);
   return {
     user: store.user,
     page: store.page,
@@ -34,7 +46,9 @@ const mapStateToProps = (store) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setYearAction: (year) => dispatch(setYear(year)),
+  getPhotoAction: (year) => dispatch(getPhoto(year)),
+
+  handleLoginAction: () => dispatch(handleLogin()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

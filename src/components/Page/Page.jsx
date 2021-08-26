@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Page = (props) => {
-  const { photos, year } = props;
+  const { photos, year, isFetching } = props;
 
   const onButtonClick = (event) => {
     const year = Number(event.currentTarget.innerText);
-    props.setYear(year);
+    props.getPhoto(year);
   };
 
   return (
@@ -19,9 +19,8 @@ export const Page = (props) => {
         <button onClick={onButtonClick}>2015</button>
         <button onClick={onButtonClick}>2014</button>
       </div>
-      <p>
-        You page {photos.length} photo {year}
-      </p>
+      <h3>Photo year {year}</h3>
+      {isFetching ? <p>Loading...</p> : <p>You have {photos.length} photo.</p>}
     </div>
   );
 };
@@ -29,5 +28,6 @@ export const Page = (props) => {
 Page.propTypes = {
   year: PropTypes.number.isRequired,
   photos: PropTypes.array.isRequired,
-  setYear: PropTypes.func.isRequired,
+  getPhoto: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };

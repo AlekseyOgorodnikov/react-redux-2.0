@@ -1,14 +1,18 @@
-import { SET_YEAR } from '../actions/PageActions';
+import { GET_PHOTO_REQUEST, GET_PHOTO_SUCCESS } from '../actions/PageActions';
 
 const initialState = {
   year: 2018,
   photos: [],
+  isFetching: false,
 };
 
 export function pageReducee(state = initialState, action) {
   switch (action.type) {
-    case SET_YEAR:
-      return { ...state, year: action.payload };
+    case GET_PHOTO_REQUEST:
+      return { ...state, year: action.payload, isFetching: true };
+
+    case GET_PHOTO_SUCCESS:
+      return { ...state, photos: action.payload, isFetching: false };
 
     default:
       return state;
