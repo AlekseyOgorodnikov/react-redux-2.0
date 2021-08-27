@@ -10,14 +10,18 @@ export const Page = (props) => {
     props.getPhotos(year);
   };
 
+  const years = [2020, 2019, 2018, 2017, 2016];
+
   return (
     <div>
       <div className="button">
-        <button onClick={onButtonClick}>2020</button>
-        <button onClick={onButtonClick}>2019</button>
-        <button onClick={onButtonClick}>2018</button>
-        <button onClick={onButtonClick}>2017</button>
-        <button onClick={onButtonClick}>2016</button>
+        {years.map((item, index) => {
+          return (
+            <button key={index} className="btn" onClick={onButtonClick}>
+              {item}
+            </button>
+          );
+        })}
       </div>
 
       <h3>
