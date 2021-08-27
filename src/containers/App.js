@@ -6,7 +6,7 @@ import './App.css';
 
 import { Page } from '../components/Page/Page';
 import { User } from '../components/User/User';
-import { getPhoto } from '../actions/PageActions';
+import { getPhotos } from '../actions/PageActions';
 import { handleLogin } from '../actions/UserAction';
 
 function App(props) {
@@ -30,8 +30,9 @@ function App(props) {
         <Page
           photos={page.photos}
           year={page.year}
-          getPhoto={getPhotoAction}
+          getPhotos={getPhotoAction}
           isFetching={page.isFetching}
+          error={page.error}
         />
       </header>
     </div>
@@ -46,7 +47,7 @@ const mapStateToProps = (store) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getPhotoAction: (year) => dispatch(getPhoto(year)),
+  getPhotoAction: (year) => dispatch(getPhotos(year)),
 
   handleLoginAction: () => dispatch(handleLogin()),
 });
